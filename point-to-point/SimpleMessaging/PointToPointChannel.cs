@@ -67,11 +67,11 @@ namespace SimpleMessaging
         /// <returns></returns>
         public string Receive()
         {
-            //TODO: Use basic get to read a message, auto acknowledge the message
-            //var result = 
-            //if (result != null)
-            //    return Encoding.UTF8.GetString(result.Body);
-            //else
+            // Use basic get to read a message, auto acknowledge the message
+            var result = _channel.BasicGet(_queueName, true); 
+            if (result != null)
+                return Encoding.UTF8.GetString(result.Body);
+            else
                 return null;
         }   
 
