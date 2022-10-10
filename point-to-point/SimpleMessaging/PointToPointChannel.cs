@@ -55,7 +55,8 @@ namespace SimpleMessaging
         public void Send(string message)
         {
             var body = Encoding.UTF8.GetBytes(message);
-            //TODO: Publish on the exchange using the routing key
+            // Publish on the exchange using the routing key
+            _channel.BasicPublish(ExchangeName, _routingKey, body: body);
         }
 
         /// <summary>
