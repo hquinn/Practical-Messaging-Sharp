@@ -40,9 +40,10 @@ namespace SimpleMessaging
             
             // declare a non-durable direct exchange via the channel
             _channel.ExchangeDeclare(ExchangeName, ExchangeType.Direct);
-            //TODO: declare a non-durable queue. non-exc;usive, that does not auto-delete. Use _queuename
+            // declare a non-durable queue. non-exc;usive, that does not auto-delete. Use _queuename
+            _channel.QueueDeclare(queueName, autoDelete: false, exclusive: false);
             //TODO: bind _queuename to _routingKey on the exchange
-       }
+        }
 
         /// <summary>
         /// Send a message over the channel
