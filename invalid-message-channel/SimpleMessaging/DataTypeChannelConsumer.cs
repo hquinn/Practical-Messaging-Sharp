@@ -66,7 +66,8 @@ namespace SimpleMessaging
             
             //declare a queue for invalid messages off an invalid message exchange
             //messages that we nack without requeue will go here
-            // TODO; Declare an invalid message queue exchange, direct and durable
+            // Declare an invalid message queue exchange, direct and durable
+            _channel.ExchangeDeclare(invalidMessageQueueName, ExchangeType.Direct, true);
             // TODO: declare an invalid message queue, durable
             // TODO: bind the queue to the exchange
  
