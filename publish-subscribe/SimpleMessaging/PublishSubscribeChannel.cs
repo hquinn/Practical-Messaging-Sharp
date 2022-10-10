@@ -55,7 +55,8 @@ namespace SimpleMessaging
                 var result = _channel.QueueDeclare(exclusive: true, autoDelete: true);
                 // Grab the randonly genereated queue name from the resut of the queue creation operation
                 _queueName = result.QueueName;
-                //TODO: Bind the queue name to the exchange with the ALL (empty string above) routing key
+                // Bind the queue name to the exchange with the ALL (empty string above) routing key
+                _channel.QueueBind(_queueName, ExchangeName, ALL);
             }
         }
 
