@@ -51,7 +51,8 @@ namespace SimpleMessaging
             {
                 //make the queue exclusive and autoDelete as it exists only for this subscriber; a publisher does not 
                 //create as we would not use the queue so created for that client, hence the flag in the constructor
-                //TODO: declare a queue but don't pass a queuename
+                // declare a queue but don't pass a queuename
+                _channel.QueueDeclare(exclusive: true, autoDelete: true);
                 //TODO: Grab the randonly genereated queue name from the resut of the queue creation operation
                 //TODO: Bind the queue name to the exchange with the ALL (empty string above) routing key
             }
