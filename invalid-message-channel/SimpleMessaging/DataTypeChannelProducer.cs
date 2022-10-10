@@ -56,7 +56,8 @@ namespace SimpleMessaging
                 {"x-dead-letter-exchange", InvalidMessageExchangeName},
                 {"x-dead-letter-routing-key", invalidRoutingKey}
             };
-            //TODO: Create our consumer queue, but add the arguments that hook up the invalid message queue (tip might be calle deal letter in RMQ docs)
+            // Create our consumer queue, but add the arguments that hook up the invalid message queue (tip might be calle deal letter in RMQ docs)
+            _channel.QueueDeclare(queueName, false, false, false, arguments);
             _channel.QueueBind(queue:queueName, exchange: ExchangeName, routingKey: _routingKey);
             
             //declare a queue for invalid messages off an invalid message exchange
