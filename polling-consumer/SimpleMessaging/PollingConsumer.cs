@@ -20,7 +20,6 @@ namespace SimpleMessaging
         public Task Run(CancellationToken ct)
         {
             /*
-             * TODO:
              * Create a Task that will
              *     check for cancellation
              *     create a data type channel consumer
@@ -32,6 +31,22 @@ namespace SimpleMessaging
              *     dispose of the channel
              *  return the task
              */
+            
+            return Task.Factory.StartNew(() =>
+            {
+                ct.ThrowIfCancellationRequested();
+
+                using (var channel = new DataTypeChannelConsumer<T>(_messageSerializer))
+                {
+                    while (true)
+                    {
+                        var message = channel.Receive();
+                        _messageHandler.Handle(message);
+                        Task.Delay(1000, ct).Wait(ct);
+                        ct.ThrowIfCancellationRequested();
+                    }
+                }
+            }, ct);
         }
     }
 }
