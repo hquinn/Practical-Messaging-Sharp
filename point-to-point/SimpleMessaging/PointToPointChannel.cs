@@ -42,7 +42,8 @@ namespace SimpleMessaging
             _channel.ExchangeDeclare(ExchangeName, ExchangeType.Direct);
             // declare a non-durable queue. non-exc;usive, that does not auto-delete. Use _queuename
             _channel.QueueDeclare(queueName, autoDelete: false, exclusive: false);
-            //TODO: bind _queuename to _routingKey on the exchange
+            // bind _queuename to _routingKey on the exchange
+            _channel.QueueBind(_queueName, ExchangeName, _routingKey);
         }
 
         /// <summary>
