@@ -71,7 +71,8 @@ namespace SimpleMessaging
                 throw new InvalidOperationException("You cannot send from a consumer");
             
             var body = Encoding.UTF8.GetBytes(message);
-            //TODO: Publish to the exchange, using the ALL routingkey
+            // Publish to the exchange, using the ALL routingkey
+            _channel.BasicPublish(ExchangeName, ALL, body: body);
         }
 
         /// <summary>
