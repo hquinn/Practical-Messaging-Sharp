@@ -45,7 +45,8 @@ namespace SimpleMessaging
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
             
-            // TODO: On the channel declare a non-durable fanout exchange 
+            // On the channel declare a non-durable fanout exchange 
+            _channel.ExchangeDeclare(ExchangeName, ExchangeType.Fanout);
             if (channelType == ChannelType.Subscriber)
             {
                 //make the queue exclusive and autoDelete as it exists only for this subscriber; a publisher does not 
