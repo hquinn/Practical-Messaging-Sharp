@@ -66,7 +66,8 @@ namespace SimpleMessaging
             _channel.ExchangeDeclare(InvalidMessageExchangeName, ExchangeType.Direct, true);
             // declare an invalid message queue, durable
             _channel.QueueDeclare(invalidMessageQueueName, true, autoDelete: false);
-            // TODO: bind the queue to the exchange
+            // bind the queue to the exchange
+            _channel.QueueBind(invalidMessageQueueName, InvalidMessageExchangeName, invalidRoutingKey);
         }
 
         /// <summary>
